@@ -1,0 +1,12 @@
+{
+  "id": "denim-jacket-ux",
+  "title": "Denim Jacket – Student Collection",
+  "description": "A collection of modern denim jacket designs suitable for student projects.",
+  "images": [
+    "https://images.unsplash.com/photo-1520975698518-5f4f9c1a6ef3?w=800&q=80",
+    "https://images.unsplash.com/photo-1520977328317-cc6a13b3b0d5?w=800&q=80"
+  ],
+  "tags": ["denim","jacket","student"],
+  "price": 0,
+  "published": true
+}
