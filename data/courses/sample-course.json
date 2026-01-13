@@ -1,0 +1,11 @@
+{
+  "id": "intro-to-fashion-tech",
+  "title": "Introduction to Fashion Tech",
+  "short_description": "A beginner-friendly course for students on garment design and e-commerce.",
+  "full_description": "Learn the basics of garment tech, product photography, and selling on marketplaces.",
+  "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&q=80",
+  "category": "Garments",
+  "price": 0,
+  "published": true,
+  "created_at": "2026-01-13T00:00:00Z"
+}

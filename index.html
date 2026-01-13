@@ -1,178 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SourceMarket — Sell Your Source Code</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SourceMarket — Sell source code confidently</title>
+    <meta name="description" content="SourceMarket helps developers package, license, and sell source code to businesses worldwide. Escrow, licensing, and delivery built-in.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="SourceMarket — Sell source code confidently">
+    <meta property="og:description" content="SourceMarket helps developers package, license, and sell source code to businesses worldwide.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://munna1234mm.github.io/okokokokokokok/">
+
+    <!-- Inline SVG favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%233649f9'/%3E%3Ctext x='50%25' y='54%25' fill='%23fff' font-family='Arial' font-weight='700' font-size='20' text-anchor='middle' dominant-baseline='middle'%3ES%3C/text%3E%3C/svg%3E">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lottie-web@5.8.1/build/player/lottie.min.js"></script>
   </head>
   <body>
-    <header class="hero">
-      <nav class="nav">
-        <div class="logo">SourceMarket</div>
-        <div class="nav-links">
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <a href="/" class="logo">SourceMarket</a>
+        </div>
+        <nav class="site-nav">
           <a href="#market">Marketplace</a>
           <a href="#how">How it works</a>
-          <a href="#pricing">Pricing</a>
-          <a class="ghost" href="login.html">Sign in</a>
-          <a class="primary" href="signup.html">Sign up</a>
-        </div>
-      </nav>
-      <div class="hero-content">
-        <div>
-          <p class="eyebrow">The premium source-code marketplace</p>
-          <h1>Sell your source. Protect your IP. Grow recurring revenue.</h1>
-          <p class="lead">
-            SourceMarket helps developers package, license, and sell source code to businesses
-            worldwide. Built-in escrow, automated licensing, and smart delivery keep buyers and
-            sellers safe.
-          </p>
-          <div class="cta-row">
-            <button class="primary">Start selling</button>
-            <button class="secondary">Browse listings</button>
-          </div>
-          <div class="trust">
-            <div>
-              <strong>3,400+</strong>
-              <span>active buyers</span>
-            </div>
-            <div>
-              <strong>92%</strong>
-              <span>repeat purchase rate</span>
-            </div>
-            <div>
-              <strong>$18M</strong>
-              <span>seller payouts</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="card-header">
-            <span>Top Listing</span>
-            <span class="badge">Verified</span>
-          </div>
-          <h3>Inventory Optimizer SaaS</h3>
-          <p>React + Node + Postgres • Includes docs, tests, and CI templates.</p>
-          <div class="card-meta">
-            <div>
-              <small>Asking price</small>
-              <strong>$48,000</strong>
-            </div>
-            <div>
-              <small>License type</small>
-              <strong>Single buyer</strong>
-            </div>
-          </div>
-          <button class="primary full">Request access</button>
-        </div>
+          <a class="nav-ghost" href="login.html">Sign in</a>
+          <a class="nav-cta" href="signup.html">Sign up</a>
+        </nav>
       </div>
     </header>
 
     <main>
-      <section id="market" class="market">
-        <div class="section-header">
-          <h2>Marketplace highlights</h2>
-          <p>Curated source code listings that pass security, documentation, and value reviews.</p>
-        </div>
-        <div class="cards">
-          <article>
-            <h3>Enterprise-ready vetting</h3>
-            <p>
-              We inspect architecture, dependency hygiene, and test coverage before every listing
-              goes live.
-            </p>
-          </article>
-          <article>
-            <h3>Escrow &amp; staged delivery</h3>
-            <p>Release milestones keep buyers confident while protecting your IP at every step.</p>
-          </article>
-          <article>
-            <h3>Buyer analytics</h3>
-            <p>Track interest, receive requests, and negotiate with built-in messaging.</p>
-          </article>
-        </div>
-      </section>
+      <section class="hero section-large">
+        <div class="container hero-grid">
+          <div class="hero-left">
+            <p class="eyebrow">Student Garment Courses</p>
+            <h1>Learn, design, and showcase garment projects</h1>
+            <p class="lead">A student-first platform with curated garment templates, hands-on courses, and modern portfolio-ready listings. Manage courses and content via the Admin panel.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#courses">View courses</a>
+              <a class="btn" href="#">Get started</a>
+            </div>
+            <div class="trust-row">
+              <div><strong>Free</strong><span>for students</span></div>
+              <div><strong>100+</strong><span>templates</span></div>
+              <div><strong>Community</strong><span>support</span></div>
+            </div>
+          </div>
 
-      <section id="how" class="how">
-        <div class="section-header">
-          <h2>How it works</h2>
-          <p>Launch your listing in a few days and start closing deals fast.</p>
-        </div>
-        <div class="steps">
-          <div>
-            <span>01</span>
-            <h4>Package your code</h4>
-            <p>Our checklist ensures docs, tests, and handoff guides are ready.</p>
-          </div>
-          <div>
-            <span>02</span>
-            <h4>Choose licensing</h4>
-            <p>Pick single-buyer, multi-license, or subscription-based access.</p>
-          </div>
-          <div>
-            <span>03</span>
-            <h4>Close with confidence</h4>
-            <p>Integrated escrow and legal templates keep your transactions safe.</p>
+          <div class="hero-visual">
+            <div id="lottie-player" style="width:340px;height:340px;margin:0 auto"></div>
           </div>
         </div>
       </section>
 
-      <section id="pricing" class="pricing">
-        <div class="section-header">
-          <h2>Pricing built for sellers</h2>
-          <p>Only pay when you earn. No monthly subscription required.</p>
+      <section id="market" class="section">
+        <div class="container">
+          <div class="section-header center">
+            <h2>Marketplace highlights</h2>
+            <p>Curated garment templates and course modules tailored for students.</p>
+          </div>
+          <div class="cards">
+            <article>
+              <h3>Project-ready templates</h3>
+              <p>Ready-to-use garment templates with assets and documentation.</p>
+            </article>
+            <article>
+              <h3>Hands-on courses</h3>
+              <p>Practical lessons on pattern making, photography and listing optimizations.</p>
+            </article>
+            <article>
+              <h3>Student showcase</h3>
+              <p>Publish student projects and get feedback from peers and mentors.</p>
+            </article>
+          </div>
         </div>
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <h3>Starter</h3>
-            <p class="price">10% <span>fee</span></p>
-            <ul>
-              <li>Listing review &amp; guidance</li>
-              <li>Secure document vault</li>
-              <li>Basic escrow workflow</li>
-            </ul>
-            <button class="secondary full">Choose starter</button>
+      </section>
+
+      <section id="gallery" class="section">
+        <div class="container">
+          <div class="section-header center">
+            <h2>Garment gallery</h2>
+            <p class="muted">A selection of student-friendly garment images and designs.</p>
           </div>
-          <div class="pricing-card featured">
-            <h3>Growth</h3>
-            <p class="price">7% <span>fee</span></p>
-            <ul>
-              <li>Priority listing placement</li>
-              <li>Dedicated success coach</li>
-              <li>Custom licensing templates</li>
-            </ul>
-            <button class="primary full">Choose growth</button>
+          <div id="listing-gallery" class="cards gallery-grid">
+            <!-- Listings will be populated by data/listings index -->
           </div>
-          <div class="pricing-card">
-            <h3>Enterprise</h3>
-            <p class="price">Custom</p>
-            <ul>
-              <li>White-glove transactions</li>
-              <li>Audit-ready documentation</li>
-              <li>Enterprise buyer network</li>
-            </ul>
-            <button class="secondary full">Talk to sales</button>
+        </div>
+      </section>
+
+      <section id="courses" class="section">
+        <div class="container">
+          <div class="section-header center">
+            <h2>Student-focused courses</h2>
+            <p class="muted">Courses are managed from the admin panel.</p>
+          </div>
+          <div id="courses-grid" class="cards">
+            <!-- Courses will be populated from data files -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing section removed as requested -->
+      <section id="courses" class="section">
+        <div class="container">
+          <div class="section-header center">
+            <h2>Explore student-focused courses & listings</h2>
+            <p class="muted">Courses and garment listings are managed from the admin panel.</p>
+          </div>
+          <div id="courses-grid" class="cards">
+            <!-- Courses will be populated by /data/courses JSON files -->
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div>
-        <strong>SourceMarket</strong>
-        <p>Sell with confidence. Buy with clarity.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#">Legal</a>
-        <a href="#">Support</a>
-        <a href="#">Contact</a>
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <div>
+          <strong>SourceMarket</strong>
+          <p class="muted small">Sell with confidence. Buy with clarity.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#">Legal</a>
+          <a href="#">Support</a>
+          <a href="#">Contact</a>
+        </div>
       </div>
     </footer>
+    <script>
+      const owner = 'munna1234mm';
+      const repo = 'okokokokokokok';
+
+      // Lottie init with fallback
+      (function initLottie(){
+        try{
+          lottie.loadAnimation({
+            container: document.getElementById('lottie-player'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://assets10.lottiefiles.com/packages/lf20_tfb3estd.json' // subtle looping animation
+          });
+        }catch(e){
+          // fallback: simple SVG placeholder
+          document.getElementById('lottie-player').innerHTML = '<svg width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="#f3f6ff" rx="16"/><circle cx="100" cy="100" r="36" fill="#3a49f5"/></svg>';
+        }
+      })();
+
+      async function fetchDir(path){
+        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        const res = await fetch(url);
+        if(res.status!==200) return [];
+        return res.json();
+      }
+
+      async function loadListings(){
+        const files = await fetchDir('data/listings');
+        const container = document.getElementById('listing-gallery'); container.innerHTML='';
+        if(!files || files.length===0){ container.innerHTML = '<div class="small-muted">No listings yet</div>'; return; }
+        for(const f of files){
+          const r = await fetch(f.download_url).then(r=>r.json()).catch(()=>null);
+          if(!r) continue;
+          const img = r.image || (r.images && r.images[0]) || 'https://images.unsplash.com/photo-1520975923390-1b539d5a1a2b?w=800&q=60&auto=format&fit=crop';
+          const card = document.createElement('article'); card.className='card';
+          card.innerHTML = `<img src="${img}" alt="${r.title || r.id}" style="width:100%;height:160px;object-fit:cover;border-radius:8px"> <h3 style="margin-top:10px">${r.title || r.id}</h3> <p class="muted" style="margin-top:6px">${(r.description||r.short_description||'').slice(0,120)}</p>`;
+          container.appendChild(card);
+        }
+      }
+
+      async function loadCourses(){
+        const files = await fetchDir('data/courses');
+        const container = document.getElementById('courses-grid'); container.innerHTML='';
+        if(!files || files.length===0){ container.innerHTML = '<div class="small-muted">No courses yet</div>'; return; }
+        for(const f of files){
+          const r = await fetch(f.download_url).then(r=>r.json()).catch(()=>null);
+          if(!r) continue;
+          const img = r.image || 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=60&auto=format&fit=crop';
+          const card = document.createElement('article'); card.className='card';
+          card.innerHTML = `<img src="${img}" alt="${r.title || r.id}" style="width:100%;height:160px;object-fit:cover;border-radius:8px"> <h3 style="margin-top:10px">${r.title || r.id}</h3> <p class="muted" style="margin-top:6px">${(r.short_description||r.full_description||'').slice(0,120)}</p>`;
+          container.appendChild(card);
+        }
+      }
+
+      loadListings(); loadCourses();
+    </script>
   </body>
 </html>
