@@ -1,177 +1,151 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SourceMarket — Sell Your Source Code</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SourceMarket — Sell source code confidently</title>
+    <meta name="description" content="SourceMarket helps developers package, license, and sell source code to businesses worldwide. Escrow, licensing, and delivery built-in.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="SourceMarket — Sell source code confidently">
+    <meta property="og:description" content="SourceMarket helps developers package, license, and sell source code to businesses worldwide.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://munna1234mm.github.io/okokokokokokok/">
+
+    <!-- Inline SVG favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%233649f9'/%3E%3Ctext x='50%25' y='54%25' fill='%23fff' font-family='Arial' font-weight='700' font-size='20' text-anchor='middle' dominant-baseline='middle'%3ES%3C/text%3E%3C/svg%3E">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header class="hero">
-      <nav class="nav">
-        <div class="logo">SourceMarket</div>
-        <div class="nav-links">
+    <header class="site-header">
+      <div class="container header-row">
+        <div class="brand">
+          <a href="/" class="logo">SourceMarket</a>
+        </div>
+        <nav class="site-nav">
           <a href="#market">Marketplace</a>
           <a href="#how">How it works</a>
           <a href="#pricing">Pricing</a>
-          <a class="ghost" href="login.html">Sign in</a>
-          <a class="primary" href="signup.html">Sign up</a>
-        </div>
-      </nav>
-      <div class="hero-content">
-        <div>
-          <p class="eyebrow">The premium source-code marketplace</p>
-          <h1>Sell your source. Protect your IP. Grow recurring revenue.</h1>
-          <p class="lead">
-            SourceMarket helps developers package, license, and sell source code to businesses
-            worldwide. Built-in escrow, automated licensing, and smart delivery keep buyers and
-            sellers safe.
-          </p>
-          <div class="cta-row">
-            <button class="primary">Start selling</button>
-            <button class="secondary">Browse listings</button>
-          </div>
-          <div class="trust">
-            <div>
-              <strong>3,400+</strong>
-              <span>active buyers</span>
-            </div>
-            <div>
-              <strong>92%</strong>
-              <span>repeat purchase rate</span>
-            </div>
-            <div>
-              <strong>$18M</strong>
-              <span>seller payouts</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="card-header">
-            <span>Top Listing</span>
-            <span class="badge">Verified</span>
-          </div>
-          <h3>Inventory Optimizer SaaS</h3>
-          <p>React + Node + Postgres • Includes docs, tests, and CI templates.</p>
-          <div class="card-meta">
-            <div>
-              <small>Asking price</small>
-              <strong>$48,000</strong>
-            </div>
-            <div>
-              <small>License type</small>
-              <strong>Single buyer</strong>
-            </div>
-          </div>
-          <button class="primary full">Request access</button>
-        </div>
+          <a class="nav-ghost" href="login.html">Sign in</a>
+          <a class="nav-cta" href="signup.html">Sign up</a>
+        </nav>
       </div>
     </header>
 
     <main>
-      <section id="market" class="market">
-        <div class="section-header">
-          <h2>Marketplace highlights</h2>
-          <p>Curated source code listings that pass security, documentation, and value reviews.</p>
-        </div>
-        <div class="cards">
-          <article>
-            <h3>Enterprise-ready vetting</h3>
-            <p>
-              We inspect architecture, dependency hygiene, and test coverage before every listing
-              goes live.
-            </p>
-          </article>
-          <article>
-            <h3>Escrow &amp; staged delivery</h3>
-            <p>Release milestones keep buyers confident while protecting your IP at every step.</p>
-          </article>
-          <article>
-            <h3>Buyer analytics</h3>
-            <p>Track interest, receive requests, and negotiate with built-in messaging.</p>
-          </article>
-        </div>
-      </section>
+      <section class="hero section-large">
+        <div class="container hero-grid">
+          <div class="hero-left">
+            <p class="eyebrow">Sell your code, safely</p>
+            <h1>Sell source code to businesses with escrow and licensing built in</h1>
+            <p class="lead">SourceMarket makes it fast and secure to package, license, and sell source code. Built-in escrow, automated delivery, and compliance checks reduce risk for both buyers and sellers.</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#">Start selling</a>
+              <a class="btn" href="#">Browse listings</a>
+            </div>
+            <div class="trust-row">
+              <div><strong>3,400+</strong><span>buyers</span></div>
+              <div><strong>92%</strong><span>repeat</span></div>
+              <div><strong>$18M</strong><span>payouts</span></div>
+            </div>
+          </div>
 
-      <section id="how" class="how">
-        <div class="section-header">
-          <h2>How it works</h2>
-          <p>Launch your listing in a few days and start closing deals fast.</p>
-        </div>
-        <div class="steps">
-          <div>
-            <span>01</span>
-            <h4>Package your code</h4>
-            <p>Our checklist ensures docs, tests, and handoff guides are ready.</p>
-          </div>
-          <div>
-            <span>02</span>
-            <h4>Choose licensing</h4>
-            <p>Pick single-buyer, multi-license, or subscription-based access.</p>
-          </div>
-          <div>
-            <span>03</span>
-            <h4>Close with confidence</h4>
-            <p>Integrated escrow and legal templates keep your transactions safe.</p>
+          <div class="hero-card">
+            <div class="card-top">
+              <div class="badge">Verified</div>
+              <small class="muted">Top listing</small>
+            </div>
+            <h3>Inventory Optimizer SaaS</h3>
+            <p class="muted">React • Node • Postgres — Docs, tests, CI templates</p>
+            <div class="card-meta">
+              <div><small>Asking</small><strong>$48,000</strong></div>
+              <div><small>License</small><strong>Single buyer</strong></div>
+            </div>
+            <a class="btn btn-secondary full" href="#">Request access</a>
           </div>
         </div>
       </section>
 
-      <section id="pricing" class="pricing">
-        <div class="section-header">
-          <h2>Pricing built for sellers</h2>
-          <p>Only pay when you earn. No monthly subscription required.</p>
+      <section id="market" class="section">
+        <div class="container">
+          <div class="section-header center">
+            <h2>Marketplace highlights</h2>
+            <p>Curated listings that pass security and documentation reviews.</p>
+          </div>
+          <div class="cards">
+            <article>
+              <h3>Enterprise-ready vetting</h3>
+              <p>Architecture, dependency hygiene, and tests are evaluated before listing.</p>
+            </article>
+            <article>
+              <h3>Escrow & staged delivery</h3>
+              <p>Milestones and escrow protect both parties during handoff.</p>
+            </article>
+            <article>
+              <h3>Buyer analytics</h3>
+              <p>Track interest, receive requests, and manage offers in one place.</p>
+            </article>
+          </div>
         </div>
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <h3>Starter</h3>
-            <p class="price">10% <span>fee</span></p>
-            <ul>
-              <li>Listing review &amp; guidance</li>
-              <li>Secure document vault</li>
-              <li>Basic escrow workflow</li>
-            </ul>
-            <button class="secondary full">Choose starter</button>
+      </section>
+
+      <section id="pricing" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Pricing built for sellers</h2>
+            <p>Only pay when you earn — transparent fees and no subscription.</p>
           </div>
-          <div class="pricing-card featured">
-            <h3>Growth</h3>
-            <p class="price">7% <span>fee</span></p>
-            <ul>
-              <li>Priority listing placement</li>
-              <li>Dedicated success coach</li>
-              <li>Custom licensing templates</li>
-            </ul>
-            <button class="primary full">Choose growth</button>
-          </div>
-          <div class="pricing-card">
-            <h3>Enterprise</h3>
-            <p class="price">Custom</p>
-            <ul>
-              <li>White-glove transactions</li>
-              <li>Audit-ready documentation</li>
-              <li>Enterprise buyer network</li>
-            </ul>
-            <button class="secondary full">Talk to sales</button>
+          <div class="pricing-grid">
+            <div class="pricing-card">
+              <h3>Starter</h3>
+              <p class="price">10% <span>fee</span></p>
+              <ul>
+                <li>Listing review</li>
+                <li>Secure document vault</li>
+                <li>Basic escrow</li>
+              </ul>
+              <a class="btn" href="#">Choose starter</a>
+            </div>
+            <div class="pricing-card featured">
+              <h3>Growth</h3>
+              <p class="price">7% <span>fee</span></p>
+              <ul>
+                <li>Priority placement</li>
+                <li>Success coach</li>
+                <li>Custom licenses</li>
+              </ul>
+              <a class="btn btn-primary" href="#">Choose growth</a>
+            </div>
+            <div class="pricing-card">
+              <h3>Enterprise</h3>
+              <p class="price">Custom</p>
+              <ul>
+                <li>White-glove transactions</li>
+                <li>Audit-ready docs</li>
+                <li>Buyer network</li>
+              </ul>
+              <a class="btn" href="#">Contact sales</a>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div>
-        <strong>SourceMarket</strong>
-        <p>Sell with confidence. Buy with clarity.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#">Legal</a>
-        <a href="#">Support</a>
-        <a href="#">Contact</a>
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <div>
+          <strong>SourceMarket</strong>
+          <p class="muted small">Sell with confidence. Buy with clarity.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#">Legal</a>
+          <a href="#">Support</a>
+          <a href="#">Contact</a>
+        </div>
       </div>
     </footer>
   </body>
