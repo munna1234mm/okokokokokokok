@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lottie-web@5.8.1/build/player/lottie.min.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -39,32 +40,22 @@
       <section class="hero section-large">
         <div class="container hero-grid">
           <div class="hero-left">
-            <p class="eyebrow">Sell your code, safely</p>
-            <h1>Sell source code to businesses with escrow and licensing built in</h1>
-            <p class="lead">SourceMarket makes it fast and secure to package, license, and sell source code. Built-in escrow, automated delivery, and compliance checks reduce risk for both buyers and sellers.</p>
+            <p class="eyebrow">Student Garment Courses</p>
+            <h1>Learn, design, and showcase garment projects</h1>
+            <p class="lead">A student-first platform with curated garment templates, hands-on courses, and modern portfolio-ready listings. Manage courses and content via the Admin panel.</p>
             <div class="cta-row">
-              <a class="btn btn-primary" href="#">Start selling</a>
-              <a class="btn" href="#">Browse listings</a>
+              <a class="btn btn-primary" href="#courses">View courses</a>
+              <a class="btn" href="#">Get started</a>
             </div>
             <div class="trust-row">
-              <div><strong>3,400+</strong><span>buyers</span></div>
-              <div><strong>92%</strong><span>repeat</span></div>
-              <div><strong>$18M</strong><span>payouts</span></div>
+              <div><strong>Free</strong><span>for students</span></div>
+              <div><strong>100+</strong><span>templates</span></div>
+              <div><strong>Community</strong><span>support</span></div>
             </div>
           </div>
 
-          <div class="hero-card">
-            <div class="card-top">
-              <div class="badge">Verified</div>
-              <small class="muted">Top listing</small>
-            </div>
-            <h3>Inventory Optimizer SaaS</h3>
-            <p class="muted">React • Node • Postgres — Docs, tests, CI templates</p>
-            <div class="card-meta">
-              <div><small>Asking</small><strong>$48,000</strong></div>
-              <div><small>License</small><strong>Single buyer</strong></div>
-            </div>
-            <a class="btn btn-secondary full" href="#">Request access</a>
+          <div class="hero-visual">
+            <div id="lottie-player" style="width:340px;height:340px;margin:0 auto"></div>
           </div>
         </div>
       </section>
@@ -73,21 +64,45 @@
         <div class="container">
           <div class="section-header center">
             <h2>Marketplace highlights</h2>
-            <p>Curated listings that pass security and documentation reviews.</p>
+            <p>Curated garment templates and course modules tailored for students.</p>
           </div>
           <div class="cards">
             <article>
-              <h3>Enterprise-ready vetting</h3>
-              <p>Architecture, dependency hygiene, and tests are evaluated before listing.</p>
+              <h3>Project-ready templates</h3>
+              <p>Ready-to-use garment templates with assets and documentation.</p>
             </article>
             <article>
-              <h3>Escrow & staged delivery</h3>
-              <p>Milestones and escrow protect both parties during handoff.</p>
+              <h3>Hands-on courses</h3>
+              <p>Practical lessons on pattern making, photography and listing optimizations.</p>
             </article>
             <article>
-              <h3>Buyer analytics</h3>
-              <p>Track interest, receive requests, and manage offers in one place.</p>
+              <h3>Student showcase</h3>
+              <p>Publish student projects and get feedback from peers and mentors.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section">
+        <div class="container">
+          <div class="section-header center">
+            <h2>Garment gallery</h2>
+            <p class="muted">A selection of student-friendly garment images and designs.</p>
+          </div>
+          <div id="listing-gallery" class="cards gallery-grid">
+            <!-- Listings will be populated by data/listings index -->
+          </div>
+        </div>
+      </section>
+
+      <section id="courses" class="section">
+        <div class="container">
+          <div class="section-header center">
+            <h2>Student-focused courses</h2>
+            <p class="muted">Courses are managed from the admin panel.</p>
+          </div>
+          <div id="courses-grid" class="cards">
+            <!-- Courses will be populated from data files -->
           </div>
         </div>
       </section>
@@ -119,5 +134,62 @@
         </div>
       </div>
     </footer>
+    <script>
+      const owner = 'munna1234mm';
+      const repo = 'okokokokokokok';
+
+      // Lottie init with fallback
+      (function initLottie(){
+        try{
+          lottie.loadAnimation({
+            container: document.getElementById('lottie-player'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://assets10.lottiefiles.com/packages/lf20_tfb3estd.json' // subtle looping animation
+          });
+        }catch(e){
+          // fallback: simple SVG placeholder
+          document.getElementById('lottie-player').innerHTML = '<svg width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="#f3f6ff" rx="16"/><circle cx="100" cy="100" r="36" fill="#3a49f5"/></svg>';
+        }
+      })();
+
+      async function fetchDir(path){
+        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        const res = await fetch(url);
+        if(res.status!==200) return [];
+        return res.json();
+      }
+
+      async function loadListings(){
+        const files = await fetchDir('data/listings');
+        const container = document.getElementById('listing-gallery'); container.innerHTML='';
+        if(!files || files.length===0){ container.innerHTML = '<div class="small-muted">No listings yet</div>'; return; }
+        for(const f of files){
+          const r = await fetch(f.download_url).then(r=>r.json()).catch(()=>null);
+          if(!r) continue;
+          const img = r.image || (r.images && r.images[0]) || 'https://images.unsplash.com/photo-1520975923390-1b539d5a1a2b?w=800&q=60&auto=format&fit=crop';
+          const card = document.createElement('article'); card.className='card';
+          card.innerHTML = `<img src="${img}" alt="${r.title || r.id}" style="width:100%;height:160px;object-fit:cover;border-radius:8px"> <h3 style="margin-top:10px">${r.title || r.id}</h3> <p class="muted" style="margin-top:6px">${(r.description||r.short_description||'').slice(0,120)}</p>`;
+          container.appendChild(card);
+        }
+      }
+
+      async function loadCourses(){
+        const files = await fetchDir('data/courses');
+        const container = document.getElementById('courses-grid'); container.innerHTML='';
+        if(!files || files.length===0){ container.innerHTML = '<div class="small-muted">No courses yet</div>'; return; }
+        for(const f of files){
+          const r = await fetch(f.download_url).then(r=>r.json()).catch(()=>null);
+          if(!r) continue;
+          const img = r.image || 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=60&auto=format&fit=crop';
+          const card = document.createElement('article'); card.className='card';
+          card.innerHTML = `<img src="${img}" alt="${r.title || r.id}" style="width:100%;height:160px;object-fit:cover;border-radius:8px"> <h3 style="margin-top:10px">${r.title || r.id}</h3> <p class="muted" style="margin-top:6px">${(r.short_description||r.full_description||'').slice(0,120)}</p>`;
+          container.appendChild(card);
+        }
+      }
+
+      loadListings(); loadCourses();
+    </script>
   </body>
 </html>

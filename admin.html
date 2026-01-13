@@ -35,6 +35,39 @@
         </div>
       </section>
 
+      <!-- Course / Listing edit modal -->
+      <div id="editModal" style="display:none;position:fixed;inset:0;background:rgba(11,18,32,0.6);align-items:center;justify-content:center">
+        <div style="background:#fff;padding:18px;border-radius:10px;min-width:320px;max-width:720px;box-shadow:0 12px 30px rgba(11,18,32,0.12)">
+          <h3 id="modalTitle">Edit</h3>
+          <form id="editForm">
+            <input type="hidden" id="editPath">
+            <label>Id
+              <input id="fieldId" required style="width:100%;padding:8px;margin-top:6px;border:1px solid var(--border);border-radius:8px">
+            </label>
+            <label>Title
+              <input id="fieldTitle" required style="width:100%;padding:8px;margin-top:6px;border:1px solid var(--border);border-radius:8px">
+            </label>
+            <label>Short description
+              <textarea id="fieldShort" style="width:100%;padding:8px;margin-top:6px;border:1px solid var(--border);border-radius:8px"></textarea>
+            </label>
+            <label>Full description
+              <textarea id="fieldFull" style="width:100%;padding:8px;margin-top:6px;border:1px solid var(--border);border-radius:8px"></textarea>
+            </label>
+            <label>Image URL (or upload below)
+              <input id="fieldImage" style="width:100%;padding:8px;margin-top:6px;border:1px solid var(--border);border-radius:8px">
+            </label>
+            <label>Upload image
+              <input id="imageUpload" type="file" accept="image/*" style="margin-top:6px">
+            </label>
+            <label style="display:block;margin-top:8px"><input id="fieldPublished" type="checkbox"> Published</label>
+            <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
+              <button type="button" id="saveBtn" class="btn btn-primary">Save</button>
+              <button type="button" id="cancelBtn" class="btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
       <section style="margin-top:28px">
         <h3>Listings (Garments)</h3>
         <div class="pad">
@@ -87,6 +120,16 @@
         return res.json();
       }
 
+      // Upload binary (base64) content directly (useful for images)
+      async function putFileBase64(path, base64Content, message){
+        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        const body = { message, content: base64Content };
+        const existing = await getFile(path);
+        if(existing && existing.sha) body.sha = existing.sha;
+        const res = await fetch(url, { method: 'PUT', headers: { ...headers, 'Content-Type':'application/json' }, body: JSON.stringify(body) });
+        return res.json();
+      }
+
       async function deleteFile(path, message){
         const existing = await getFile(path);
         if(!existing) return null;
@@ -106,7 +149,7 @@
           const row = document.createElement('div'); row.className='file-row';
           const left = document.createElement('div'); left.innerHTML = `<strong>${f.name}</strong>`;
           const right = document.createElement('div');
-          right.innerHTML = `<button class="btn" data-path="${f.path}" onclick="editCourse('${f.path}')">Edit</button> <button class="btn" data-path="${f.path}" onclick="removeCourse('${f.path}')">Delete</button>`;
+          right.innerHTML = `<button class="btn" onclick="previewFile('${f.path}')">Preview</button> <button class="btn" data-path="${f.path}" onclick="editCourse('${f.path}')">Edit</button> <button class="btn" data-path="${f.path}" onclick="removeCourse('${f.path}')">Delete</button>`;
           row.appendChild(left); row.appendChild(right); list.appendChild(row);
         });
       }
@@ -120,26 +163,51 @@
           const row = document.createElement('div'); row.className='file-row';
           const left = document.createElement('div'); left.innerHTML = `<strong>${f.name}</strong>`;
           const right = document.createElement('div');
-          right.innerHTML = `<button class="btn" data-path="${f.path}" onclick="editListing('${f.path}')">Edit</button> <button class="btn" data-path="${f.path}" onclick="removeListing('${f.path}')">Delete</button>`;
+          right.innerHTML = `<button class="btn" onclick="previewFile('${f.path}')">Preview</button> <button class="btn" data-path="${f.path}" onclick="editListing('${f.path}')">Edit</button> <button class="btn" data-path="${f.path}" onclick="removeListing('${f.path}')">Delete</button>`;
           row.appendChild(left); row.appendChild(right); list.appendChild(row);
         });
       }
 
-      // Add / edit handlers
+      // State for modal and uploads
+      let currentUploadFile = null;
+      let currentEditingPath = null;
+      let currentEditingType = null;
+
+      function showEditModal(type, path, data){
+        currentEditingType = type; currentEditingPath = path;
+        document.getElementById('modalTitle').innerText = type === 'course' ? 'Edit Course' : 'Edit Listing';
+        document.getElementById('editPath').value = path;
+        document.getElementById('fieldId').value = data.id || '';
+        document.getElementById('fieldTitle').value = data.title || '';
+        document.getElementById('fieldShort').value = data.short_description || data.description || '';
+        document.getElementById('fieldFull').value = data.full_description || data.description || '';
+        document.getElementById('fieldImage').value = (data.image || (data.images && data.images[0]) || '');
+        document.getElementById('fieldPublished').checked = !!data.published;
+        currentUploadFile = null;
+        document.getElementById('imageUpload').value = '';
+        document.getElementById('editModal').style.display = 'flex';
+      }
+
+      function hideEditModal(){ document.getElementById('editModal').style.display = 'none'; }
+
       window.editCourse = async function(path){
         const f = await getFile(path);
         if(!f) return alert('Unable to load file');
         const content = decodeURIComponent(escape(atob(f.content)));
         const data = JSON.parse(content);
-        const newTitle = prompt('Title', data.title) || data.title;
-        data.title = newTitle;
-        await putFile(path, JSON.stringify(data, null, 2), `Update course ${data.id}`);
-        alert('Updated'); renderCourses();
+        showEditModal('course', path, data);
       }
 
       window.removeCourse = async function(path){ if(!confirm('Delete this course?')) return; await deleteFile(path, 'Delete course'); alert('Deleted'); renderCourses(); }
 
-      window.editListing = async function(path){ const f = await getFile(path); if(!f) return alert('Unable to load file'); const content = decodeURIComponent(escape(atob(f.content))); const data = JSON.parse(content); const newTitle = prompt('Title', data.title) || data.title; data.title = newTitle; await putFile(path, JSON.stringify(data, null, 2), `Update listing ${data.id}`); alert('Updated'); renderListings(); }
+      window.editListing = async function(path){
+        const f = await getFile(path);
+        if(!f) return alert('Unable to load file');
+        const content = decodeURIComponent(escape(atob(f.content)));
+        const data = JSON.parse(content);
+        showEditModal('listing', path, data);
+      }
+
       window.removeListing = async function(path){ if(!confirm('Delete this listing?')) return; await deleteFile(path,'Delete listing'); alert('Deleted'); renderListings(); }
 
       document.getElementById('authBtn').addEventListener('click', ()=>{
@@ -161,6 +229,60 @@
         await putFile(`data/listings/${id}.json`, JSON.stringify(data, null, 2), `Add listing ${id}`);
         alert('Listing created'); renderListings();
       });
+
+      // Preview helper
+      window.previewFile = function(path){
+        const raw = `https://raw.githubusercontent.com/${owner}/${repo}/main/${path}`;
+        window.open(raw, '_blank');
+      }
+
+      // Modal buttons and upload handling
+      document.getElementById('cancelBtn').addEventListener('click', ()=>{ hideEditModal(); });
+      document.getElementById('saveBtn').addEventListener('click', async ()=>{
+        const path = document.getElementById('editPath').value;
+        if(!path) return alert('Missing path');
+        // build data object from fields
+        const id = document.getElementById('fieldId').value.trim();
+        const title = document.getElementById('fieldTitle').value.trim();
+        const shortDesc = document.getElementById('fieldShort').value.trim();
+        const fullDesc = document.getElementById('fieldFull').value.trim();
+        let image = document.getElementById('fieldImage').value.trim();
+        const published = document.getElementById('fieldPublished').checked;
+
+        // If a file was selected, upload it to assets/images
+        if(currentUploadFile){
+          const fname = (id || 'upload') + '_' + Date.now() + '.' + currentUploadFile.name.split('.').pop();
+          const reader = new FileReader();
+          reader.onload = async function(ev){
+            const dataUrl = ev.target.result; // data:image/png;base64,....
+            const base64 = dataUrl.split(',')[1];
+            await putFileBase64(`assets/images/${fname}`, base64, `Add image ${fname}`);
+            image = `/assets/images/${fname}`;
+            await saveMeta();
+          }
+          reader.readAsDataURL(currentUploadFile);
+        } else {
+          await saveMeta();
+        }
+
+        async function saveMeta(){
+          // load existing json to preserve fields
+          const f = await getFile(path);
+          const content = f ? decodeURIComponent(escape(atob(f.content))) : '{}';
+          const data = Object.assign({}, JSON.parse(content));
+          data.id = id || data.id || path.split('/').pop().replace('.json','');
+          data.title = title;
+          if(shortDesc) data.short_description = shortDesc;
+          if(fullDesc) data.full_description = fullDesc;
+          if(image) data.image = image;
+          data.published = !!published;
+          await putFile(path, JSON.stringify(data, null, 2), `Update ${data.id}`);
+          alert('Saved'); hideEditModal();
+          if(currentEditingType==='course') renderCourses(); else renderListings();
+        }
+      });
+
+      document.getElementById('imageUpload').addEventListener('change', (e)=>{ currentUploadFile = e.target.files[0] || null; });
 
       // initial empty lists until authorized
     </script>
