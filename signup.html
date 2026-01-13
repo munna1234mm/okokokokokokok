@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create account — SourceMarket</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="nav" style="padding:1rem 6vw;">
+      <div class="logo">SourceMarket</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="login.html" class="ghost">Sign in</a>
+      </div>
+    </nav>
+
+    <main class="auth-container">
+      <div class="auth-card">
+        <h2>Create an account</h2>
+        <form id="signupForm">
+          <label>
+            Full name
+            <input type="text" name="name" required placeholder="Your name" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="you@example.com" />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" required placeholder="At least 8 characters" minlength="8" />
+          </label>
+          <label>
+            Confirm password
+            <input type="password" name="confirm" required placeholder="Repeat password" minlength="8" />
+          </label>
+          <div class="form-actions">
+            <button class="primary" type="submit">Create account</button>
+            <a class="muted" href="login.html">Have an account?</a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById('signupForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const pw = this.password.value;
+        const confirm = this.confirm.value;
+        if (pw !== confirm) return alert('Passwords do not match');
+        alert('Account creation submitted for ' + this.email.value + '\n(Frontend demo only)');
+      });
+    </script>
+  </body>
+</html>

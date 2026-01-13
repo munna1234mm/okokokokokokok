@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in — SourceMarket</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="nav" style="padding:1rem 6vw;">
+      <div class="logo">SourceMarket</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="signup.html" class="primary">Sign up</a>
+      </div>
+    </nav>
+
+    <main class="auth-container">
+      <div class="auth-card">
+        <h2>Sign in to your account</h2>
+        <form id="loginForm">
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="you@example.com" />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" required placeholder="••••••••" />
+          </label>
+          <div class="form-actions">
+            <button class="primary" type="submit">Sign in</button>
+            <a class="muted" href="signup.html">Create account</a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = this.email.value.trim();
+        if (!email) return alert('Please enter your email');
+        // Placeholder: in a real app you'd POST to your auth endpoint
+        alert('Sign in submitted for ' + email + '\n(Frontend demo only)');
+      });
+    </script>
+  </body>
+</html>
